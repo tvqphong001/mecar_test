@@ -3,21 +3,20 @@ import 'package:get/get.dart';
 class KeyLang{
   const KeyLang._();
 
-  static const login ="login";
-  static const register ="register";
-
+  static const String login ="login";
+  static const String register ="register";
 }
 
 class Language extends Translations{
   @override
   Map<String, Map<String, String>> get keys => {
     'vi_VN': {
-      KeyLang.login : 'Đăng nhập',
-      KeyLang.register : 'Đăng ký'
+      KeyLang.login : 'ĐĂNG NHẬP',
+      KeyLang.register : 'ĐĂNG KÝ'
     },
     'en_US': {
-      KeyLang.login : 'Login',
-      KeyLang.register : 'Register'
+      KeyLang.login : 'LOGIN',
+      KeyLang.register : 'REGISTER'
     },
 
   };
