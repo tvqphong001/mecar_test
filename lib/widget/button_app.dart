@@ -20,17 +20,69 @@ class ButtonApp extends StatelessWidget {
             ? Theme.of(context).primaryColor
             : Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: Theme.of(context).cardColor, width: 2),
+          side: BorderSide(color: Theme.of(context).cardColor, width: 2),
           borderRadius: BorderRadius.circular(6),
         ),
         onPressed: onTap,
         child: Text(
           text,
-          style: textTheme(context).button!.copyWith(
+          style: context.textTheme.button!.copyWith(
               color: fillButton
                   ? Theme.of(context).primaryColor
                   : Theme.of(context).cardColor),
         ),
       );
+}
+
+class Button extends StatelessWidget {
+  const Button(
+      {Key? key,
+      this.onPressed,
+      this.onLongPress,
+      this.noAnim = false,
+      required this.child,
+      this.minWidth = 10,
+      this.height,
+      this.textToolTip})
+      : super(key: key);
+
+  const Button.noAnim(
+      {Key? key,
+      this.onPressed,
+      this.onLongPress,
+      this.noAnim = true,
+      required this.child,
+      this.minWidth = 10,
+      this.height,
+      this.textToolTip})
+      : super(key: key);
+
+  final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
+  final bool noAnim;
+  final Widget child;
+  final double minWidth;
+  final double? height;
+  final String? textToolTip;
+
+  @override
+  Widget build(BuildContext context) => MaterialButton(
+      minWidth: minWidth,
+      height: height,
+      onPressed: () {
+        onPressed?.call();
+      },
+      onLongPress: () {
+        onLongPress?.call();
+      },
+      padding: EdgeInsets.zero,
+      splashColor: noAnim ? Colors.transparent : null,
+      highlightColor: noAnim ? Colors.transparent : null,
+      child: textToolTip != null
+          ? Tooltip(
+              message: textToolTip,
+              child: child,
+            )
+          : child,
+    );
 }

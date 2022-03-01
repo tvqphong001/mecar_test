@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,34 +10,37 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:inter_view_mecar/utils/colors/colors.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
-    theme: _lightTheme(),
-    darkTheme: _darkTheme(),
-    translations: Language(),
-    initialBinding: InitBinding(),
-    locale: const Locale('en', 'EN'),
-    fallbackLocale: const Locale('en', 'EN'),
-    // locale: Locale(Platform.localeName),
-    localizationsDelegates: const [
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
-      RefreshLocalizations.delegate,
-    ],
-    supportedLocales: const [
-      Locale('en', 'EN'),
-      Locale('vi', 'VN'),
-    ],
-    getPages: AppPages.pages,
-    initialRoute: Routes.splash,
-    debugShowCheckedModeBanner: false,
-    defaultTransition: Transition.rightToLeft,
-  );
+        theme: _lightTheme(),
+        darkTheme: _darkTheme(),
+        translations: Language(),
+        initialBinding: InitBinding(),
+        // locale: const Locale('en', 'EN'),
+        // fallbackLocale: const Locale('en', 'EN'),
+        locale: !kIsWeb
+            ? Locale(Platform.localeName)
+            : const Locale('en', 'EN'),
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          RefreshLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', 'EN'),
+          Locale('vi', 'VN'),
+        ],
+        getPages: AppPages.pages,
+        initialRoute: Routes.splash,
+        debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.rightToLeft,
+      );
 }
 
 ThemeData _darkTheme() {
@@ -62,7 +67,7 @@ ThemeData _darkTheme() {
         fontSize: 13,
       ),
       caption:
-      theme.textTheme.caption!.copyWith(fontSize: 11, color: Colors.white),
+          theme.textTheme.caption!.copyWith(fontSize: 11, color: Colors.white),
     ),
   );
 }
@@ -91,7 +96,7 @@ ThemeData _lightTheme() {
         fontSize: 13,
       ),
       caption:
-      theme.textTheme.caption!.copyWith(fontSize: 11, color: Colors.black),
+          theme.textTheme.caption!.copyWith(fontSize: 11, color: Colors.black),
     ),
   );
 }

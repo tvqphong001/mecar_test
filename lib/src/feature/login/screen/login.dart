@@ -22,8 +22,7 @@ class Login extends StatelessWidget {
                 _navigateWhenLoginSuccess();
               }
             },
-            builder: (context, state) =>
-            SingleChildScrollView(
+            builder: (context, state) => SingleChildScrollView(
               child: SizedBox(
                 width: Screen.widthScreen,
                 child: Column(
@@ -38,7 +37,7 @@ class Login extends StatelessWidget {
                         children: [
                           Text(
                             KeyLang.login.tr,
-                            style: textTheme(context).subtitle1,
+                            style: context.textTheme.subtitle1,
                           ),
                           const SizedBox(
                             height: 32,
@@ -62,24 +61,24 @@ class Login extends StatelessWidget {
                           const SizedBox(
                             height: 16,
                           ),
-                          if (state.status == ApiStatus.processing) const Center(
-                            child: CircularProgressIndicator(),
-                          ) else ButtonApp(
-                            onTap: () {
-                              context
-                                  .read<LoginBloc>()
-                                  .add(SubmitEvent());
-                            },
-                            text: KeyLang.login.tr.toUpperCase(),
-                          )
+                          if (state.status == ApiStatus.processing)
+                            const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          else
+                            ButtonApp(
+                              onTap: () {
+                                context.read<LoginBloc>().add(SubmitEvent());
+                              },
+                              text: KeyLang.login.tr.toUpperCase(),
+                            )
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-            )
-            ,
+            ),
           ),
         ),
       );

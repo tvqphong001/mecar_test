@@ -24,12 +24,12 @@ class InfoUser extends StatelessWidget {
             children: [
               Text(
                 name,
-                style:
-                textTheme(context).bodyText1!.copyWith(fontWeight: FontWeight.w700),
+                style: context.textTheme.bodyText1!
+                    .copyWith(fontWeight: FontWeight.w700),
               ),
               Text(
                 at,
-                style: textTheme(context).caption,
+                style: context.textTheme.caption,
               )
             ],
           )

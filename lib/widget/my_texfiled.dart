@@ -17,7 +17,7 @@ class MyTextField extends StatelessWidget {
         enableSuggestions: !isPassword,
         autocorrect: !isPassword,
         decoration: InputDecoration(
-          hintText: hint,
+            hintText: hint,
             hintStyle: Theme.of(context)
                 .textTheme
                 .bodyText1!
@@ -25,11 +25,11 @@ class MyTextField extends StatelessWidget {
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 19.5, horizontal: 17),
             focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color:Colors.blue, width: 3),
-
+              borderSide: BorderSide(color: Colors.blue, width: 3),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).cardColor, width: 2),
+              borderSide:
+                  BorderSide(color: Theme.of(context).cardColor, width: 2),
             ),
             border: InputBorder.none),
       );

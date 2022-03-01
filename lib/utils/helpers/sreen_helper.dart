@@ -11,14 +11,14 @@ class _ScreenHelper {
   double get bottomBar => MediaQuery.of(Get.context!).padding.bottom;
 
   double getSsp(double size) {
-    double _screenSize =
+    double screenSize =
         (size / designWidth) * MediaQuery.of(Get.context!).size.width;
 
-    if (_screenSize >= size) {
-      _screenSize = size;
+    if (screenSize >= size) {
+      screenSize = size;
     }
 
-    return _screenSize;
+    return screenSize;
   }
 
   double get appbar => 69 + statusBar;

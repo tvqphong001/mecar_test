@@ -41,7 +41,7 @@ class Register extends StatelessWidget {
                         children: [
                           Text(
                             KeyLang.register.tr,
-                            style: textTheme(context).subtitle1,
+                            style: context.textTheme.subtitle1,
                           ),
                           const SizedBox(
                             height: 32,
