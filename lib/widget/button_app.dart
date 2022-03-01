@@ -18,18 +18,19 @@ class ButtonApp extends StatelessWidget {
         minWidth: double.infinity,
         color: !fillButton
             ? Theme.of(context).primaryColor
-            : Theme.of(context).highlightColor,
+            : Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Theme.of(context).highlightColor, width: 2),
+          side: BorderSide(
+              color: Theme.of(context).cardColor, width: 2),
           borderRadius: BorderRadius.circular(6),
         ),
         onPressed: onTap,
         child: Text(
           text,
-          style: textTheme.button!.copyWith(
+          style: textTheme(context).button!.copyWith(
               color: fillButton
                   ? Theme.of(context).primaryColor
-                  : Theme.of(context).highlightColor),
+                  : Theme.of(context).cardColor),
         ),
       );
 }

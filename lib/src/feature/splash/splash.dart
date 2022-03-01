@@ -1,4 +1,5 @@
 import 'package:inter_view_mecar/base/base.dart';
+import 'package:inter_view_mecar/widget/info_user.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
@@ -26,31 +27,11 @@ class Splash extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          avatar1,
-                          width: 28,
-                          height: 28,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Pawel Czerwinski',
-                              style: textTheme.bodyText1!
-                                  .copyWith(fontWeight: FontWeight.w700),
-                            ),
-                            Text(
-                              '@pawel_czerwinski',
-                              style: textTheme.caption,
-                            )
-                          ],
-                        )
-                      ],
+                    // ignore: prefer_const_constructors
+                    InfoUser(
+                      avatar: avatar1,
+                      at: '@pawel_czerwinski',
+                      name: 'Pawel Czerwinski',
                     ),
                     const SizedBox(
                       height: 16,
@@ -60,8 +41,10 @@ class Splash extends StatelessWidget {
                         Expanded(
                           child: ButtonApp(
                             fillButton: false,
-                            onTap: () {},
-                            text: KeyLang.login.tr,
+                            onTap: () {
+                              Get.toNamed(Routes.login);
+                            },
+                            text: KeyLang.login.tr.toUpperCase(),
                           ),
                         ),
                         const SizedBox(
@@ -70,7 +53,7 @@ class Splash extends StatelessWidget {
                         Expanded(
                           child: ButtonApp(
                             onTap: () {},
-                            text: KeyLang.register.tr,
+                            text: KeyLang.register.tr.toUpperCase(),
                           ),
                         ),
                       ],

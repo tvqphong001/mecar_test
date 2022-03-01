@@ -11,12 +11,12 @@ class Language extends Translations{
   @override
   Map<String, Map<String, String>> get keys => {
     'vi_VN': {
-      KeyLang.login : 'ĐĂNG NHẬP',
-      KeyLang.register : 'ĐĂNG KÝ'
+      KeyLang.login : 'Đăng Nhập',
+      KeyLang.register : 'Đăng ký'
     },
     'en_US': {
-      KeyLang.login : 'LOGIN',
-      KeyLang.register : 'REGISTER'
+      KeyLang.login : 'Log in',
+      KeyLang.register : 'Register'
     },
 
   };
