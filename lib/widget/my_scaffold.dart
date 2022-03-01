@@ -20,22 +20,22 @@ class MyScaffold extends StatelessWidget {
                 height: Screen.statusBar,
               ),
             Expanded(child: body),
-            SizedBox(
-              height: Screen.bottomBar,
-            ),
           ],
         ),
         bottomNavigationBar: bottomBar
             ? SizedBox(
-                height: 64,
+                height: 64+Screen.bottomBar,
                 child: Column(
-                  children: const [
-                    Divider(
+                  children:  [
+                    const Divider(
                       height: 2,
                       color: Color(0xffB3B3B3),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: _NavBottomBar(),
+                    ),
+                    SizedBox(
+                      height: Screen.bottomBar,
                     ),
                   ],
                 ),
