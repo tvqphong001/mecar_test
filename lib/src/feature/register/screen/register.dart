@@ -1,12 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inter_view_mecar/base/base.dart';
-import 'package:inter_view_mecar/src/feature/login/bloc/login_bloc.dart';
-import 'package:inter_view_mecar/src/feature/login/bloc/login_state.dart';
+import 'package:inter_view_mecar/src/feature/register/bloc/register_bloc.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class Register extends StatelessWidget {
+  const Register({Key? key}) : super(key: key);
 
-  void _navigateWhenLoginSuccess() {
+  void _navigateWhenRegisterSuccess() {
     Get.offNamedUntil(Routes.home, (route) => false);
   }
 
@@ -15,15 +14,19 @@ class Login extends StatelessWidget {
         statusBar: false,
         body: BlocProvider(
           create: (BuildContext context) =>
-              LoginBloc(loginRepository: Get.find()),
-          child: BlocConsumer<LoginBloc, LoginState>(
+              RegisterBloc(registerRepository: Get.find()),
+          child: BlocConsumer<RegisterBloc, RegisterState>(
             listener: (context, state) {
-              if (state.status == ApiStatus.success) {
-                _navigateWhenLoginSuccess();
+              if (state.status == RegisterStatus.success) {
+                _navigateWhenRegisterSuccess();
+              } else if (state.status == RegisterStatus.notMatch) {
+                Get.showSnackbar(GetSnackBar(
+                  title: KeyLang.warning.tr,
+                  message:KeyLang.confirmNotMatch.tr,
+                ));
               }
             },
-            builder: (context, state) =>
-            SingleChildScrollView(
+            builder: (context, state) => SingleChildScrollView(
               child: SizedBox(
                 width: Screen.widthScreen,
                 child: Column(
@@ -37,7 +40,7 @@ class Login extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            KeyLang.login.tr,
+                            KeyLang.register.tr,
                             style: textTheme(context).subtitle1,
                           ),
                           const SizedBox(
@@ -46,7 +49,7 @@ class Login extends StatelessWidget {
                           MyTextField(
                             hint: KeyLang.username.tr,
                             onChange: (userName) => context
-                                .read<LoginBloc>()
+                                .read<RegisterBloc>()
                                 .add(UsernameChange(userName)),
                           ),
                           const SizedBox(
@@ -56,30 +59,40 @@ class Login extends StatelessWidget {
                             isPassword: true,
                             hint: KeyLang.password.tr,
                             onChange: (password) => context
-                                .read<LoginBloc>()
+                                .read<RegisterBloc>()
                                 .add(PasswordChange(password)),
                           ),
                           const SizedBox(
                             height: 16,
                           ),
-                          if (state.status == ApiStatus.processing) const Center(
-                            child: CircularProgressIndicator(),
-                          ) else ButtonApp(
-                            onTap: () {
-                              context
-                                  .read<LoginBloc>()
-                                  .add(SubmitEvent());
-                            },
-                            text: KeyLang.login.tr.toUpperCase(),
-                          )
+                          MyTextField(
+                            isPassword: true,
+                            hint: KeyLang.confirmPassword.tr,
+                            onChange: (password) => context
+                                .read<RegisterBloc>()
+                                .add(ConfirmPasswordChange(password)),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          if (state.status == RegisterStatus.processing)
+                            const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          else
+                            ButtonApp(
+                              onTap: () {
+                                context.read<RegisterBloc>().add(SubmitEvent());
+                              },
+                              text: KeyLang.register.tr.toUpperCase(),
+                            )
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-            )
-            ,
+            ),
           ),
         ),
       );

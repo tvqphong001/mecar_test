@@ -8,7 +8,7 @@ part 'login_event.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required LoginRepository loginRepository})
       : _loginRepository = loginRepository,
-        super( const LoginState()) {
+        super(const LoginState(password: '',username: '')) {
     on<SubmitEvent>(_onLoginEvent);
     on<UsernameChange>(_onUserNameChange);
     on<PasswordChange>(_onPasswordChange);

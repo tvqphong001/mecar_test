@@ -3,3 +3,11 @@ enum ApiStatus{
   success,
   failure
 }
+
+enum RegisterStatus{
+  none,
+  notMatch,
+  processing,
+  success,
+  failure
+}

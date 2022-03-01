@@ -52,7 +52,9 @@ class Splash extends StatelessWidget {
                         ),
                         Expanded(
                           child: ButtonApp(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.register);
+                            },
                             text: KeyLang.register.tr.toUpperCase(),
                           ),
                         ),

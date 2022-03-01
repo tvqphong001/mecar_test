@@ -20,14 +20,15 @@ class MyApp extends StatelessWidget {
     initialBinding: InitBinding(),
     locale: const Locale('en', 'EN'),
     fallbackLocale: const Locale('en', 'EN'),
+    // locale: Locale(Platform.localeName),
     localizationsDelegates: const [
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
-      RefreshLocalizations.delegate
+      RefreshLocalizations.delegate,
     ],
     supportedLocales: const [
-      Locale('en', 'EN'), // English, no country code
+      Locale('en', 'EN'),
       Locale('vi', 'VN'),
     ],
     getPages: AppPages.pages,
